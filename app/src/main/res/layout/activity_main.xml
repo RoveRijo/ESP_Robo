@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/movebtncontainer"
+        android:layout_width="@dimen/joystick_mov_container_size"
+        android:layout_height="@dimen/joystick_mov_container_size"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/forwardbtn"
+            app:icon="@drawable/icon_forward"
+            android:layout_width="@dimen/joystick_mov_btn_size"
+            android:layout_height="@dimen/joystick_mov_btn_size"
+            android:layout_marginBottom="@dimen/joystick_mov_btn_size"
+            app:iconGravity="textStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/left"
+            android:layout_width="@dimen/joystick_mov_btn_size"
+            android:layout_height="@dimen/joystick_mov_btn_size"
+            android:layout_marginEnd="@dimen/joystick_mov_btn_size"
+            app:icon="@drawable/icon_left"
+            app:iconGravity="textStart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/backwardbtn"
+            android:layout_width="@dimen/joystick_mov_btn_size"
+            android:layout_height="@dimen/joystick_mov_btn_size"
+            android:layout_marginTop="@dimen/joystick_mov_btn_size"
+            app:icon="@drawable/icon_backward"
+            app:iconGravity="textStart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/right"
+            android:layout_width="@dimen/joystick_mov_btn_size"
+            android:layout_height="@dimen/joystick_mov_btn_size"
+            android:layout_marginStart="@dimen/joystick_mov_btn_size"
+            app:icon="@drawable/icon_right"
+            app:iconGravity="textStart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/crainbtncontainer"
+        android:layout_width="@dimen/crain_mov_container_size"
+        android:layout_height="@dimen/crain_mov_container_size"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/crainBFbtn"
+            android:layout_width="@dimen/joystick_mov_btn_size"
+            android:layout_height="@dimen/joystick_mov_btn_size"
+            android:layout_marginBottom="@dimen/joystick_mov_btn_size"
+            android:text="BF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/crainBBbtn"
+            android:layout_width="@dimen/joystick_mov_btn_size"
+            android:layout_height="@dimen/joystick_mov_btn_size"
+            android:layout_marginRight="@dimen/joystick_mov_btn_size"
+            android:text="BB"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/crainTFbtn"
+            android:layout_width="@dimen/joystick_mov_btn_size"
+            android:layout_height="@dimen/joystick_mov_btn_size"
+            android:layout_marginTop="@dimen/joystick_mov_btn_size"
+            android:text="TF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/crainTBbtn"
+            android:layout_width="@dimen/joystick_mov_btn_size"
+            android:layout_height="@dimen/joystick_mov_btn_size"
+            android:layout_marginLeft="@dimen/joystick_mov_btn_size"
+            android:text="TB"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Switch
+        android:id="@+id/ledswitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="LED"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

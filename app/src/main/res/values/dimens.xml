@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="joystick_mov_btn_size">75dp</dimen>
+    <dimen name="joystick_mov_container_size">250dp</dimen>
+    <dimen name="crain_mov_container_size">175dp</dimen>
+    <dimen name="settings_margin">25dp</dimen>
+</resources>
