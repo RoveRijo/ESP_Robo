@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -39,18 +40,26 @@ public class MainActivity extends AppCompatActivity {
     private TimerTask loadtask;
     private String ipaddress;
     private String toSend_packet="",Recieved_packet="";
+    private MenuItem connectBtn;
+
+
+    private static final String FORWARD = "F";
+    private static final String BACKWARD = "B";
+    private static final String LEFT = "L";
+    private static final String RIGHT = "R";
+    private static final String Cr_T_FORWARD = "A";
+    private static final String Cr_T_BACKWARD = "D";
+    private static final String Cr_B_FORWARD = "W";
+    private static final String Cr_B_BACKWARD = "S";
+    private static final String Light_N = "N";
+    private static final String Light_F = "E";
+    private static final String STOP_ALL = "X";
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SharedPreferences pref = getSharedPreferences(PREF_NAME,MODE_PRIVATE);
-        if(pref.contains(IP_KEY)){
-            ipaddress = pref.getString(IP_KEY,IP_DEFLT);
-        }
-        else{
-            pref.edit().putString(IP_KEY,IP_DEFLT).commit();
-        }
         Forward = findViewById(R.id.forwardbtn);
         Backward = findViewById(R.id.backwardbtn);
         Left = findViewById(R.id.left);
@@ -61,16 +70,32 @@ public class MainActivity extends AppCompatActivity {
         Cr_T_Forward = findViewById(R.id.crainTFbtn);
         Cr_T_Backward = findViewById(R.id.crainTBbtn);
 
+        LED.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b){
+                    toSend_packet = Light_N;
+                    Log.d(TAG,"light_ON");
+                }
+                else {
+                    toSend_packet = Light_F;
+                    Log.d(TAG,"light_OFF");
+                }
 
+            }
+        });
         Forward.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        Log.d(TAG,"pressed");
+                        toSend_packet = FORWARD;
+                        Log.d(TAG,"forward");
+                        Log.d(TAG,ipaddress);
                         return false;
                     case MotionEvent.ACTION_UP:
-                        Log.d(TAG,"released");
+                        toSend_packet = STOP_ALL;
+                        Log.d(TAG,"stoped");
                         return false;
                     default:return false;
                 }
@@ -81,10 +106,12 @@ public class MainActivity extends AppCompatActivity {
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        Log.d(TAG,"pressed");
+                        toSend_packet = BACKWARD;
+                        Log.d(TAG,"backward");
                         return false;
                     case MotionEvent.ACTION_UP:
-                        Log.d(TAG,"released");
+                        toSend_packet = STOP_ALL;
+                        Log.d(TAG,"stoped");
                         return false;
                     default:return false;
                 }
@@ -95,10 +122,12 @@ public class MainActivity extends AppCompatActivity {
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        Log.d(TAG,"pressed");
+                        toSend_packet = LEFT;
+                        Log.d(TAG,"left");
                         return false;
                     case MotionEvent.ACTION_UP:
-                        Log.d(TAG,"released");
+                        toSend_packet = STOP_ALL;
+                        Log.d(TAG,"stoped");
                         return false;
                     default:return false;
                 }
@@ -109,10 +138,12 @@ public class MainActivity extends AppCompatActivity {
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        Log.d(TAG,"pressed");
+                        toSend_packet = RIGHT;
+                        Log.d(TAG,"right");
                         return false;
                     case MotionEvent.ACTION_UP:
-                        Log.d(TAG,"released");
+                        toSend_packet = STOP_ALL;
+                        Log.d(TAG,"stoped");
                         return false;
                     default:return false;
                 }
@@ -123,10 +154,12 @@ public class MainActivity extends AppCompatActivity {
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        Log.d(TAG,"pressed");
+                        toSend_packet = Cr_B_FORWARD;
+                        Log.d(TAG,"Cr Bforward");
                         return false;
                     case MotionEvent.ACTION_UP:
-                        Log.d(TAG,"released");
+                        toSend_packet = STOP_ALL;
+                        Log.d(TAG,"stoped");
                         return false;
                     default:return false;
                 }
@@ -137,10 +170,12 @@ public class MainActivity extends AppCompatActivity {
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        Log.d(TAG,"pressed");
+                        toSend_packet = Cr_T_FORWARD;
+                        Log.d(TAG,"Cr Tforward");
                         return false;
                     case MotionEvent.ACTION_UP:
-                        Log.d(TAG,"released");
+                        toSend_packet = STOP_ALL;
+                        Log.d(TAG,"stoped");
                         return false;
                     default:return false;
                 }
@@ -151,10 +186,12 @@ public class MainActivity extends AppCompatActivity {
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        Log.d(TAG,"pressed");
+                        toSend_packet = Cr_B_BACKWARD;
+                        Log.d(TAG,"Cr Bbackward");
                         return false;
                     case MotionEvent.ACTION_UP:
-                        Log.d(TAG,"released");
+                        toSend_packet = STOP_ALL;
+                        Log.d(TAG,"stoped");
                         return false;
                     default:return false;
                 }
@@ -165,10 +202,12 @@ public class MainActivity extends AppCompatActivity {
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        Log.d(TAG,"pressed");
+                        toSend_packet = Cr_T_BACKWARD;
+                        Log.d(TAG,"Cr Tbackward");
                         return false;
                     case MotionEvent.ACTION_UP:
-                        Log.d(TAG,"released");
+                        toSend_packet = STOP_ALL;
+                        Log.d(TAG,"stoped");
                         return false;
                     default:return false;
                 }
@@ -183,36 +222,37 @@ public class MainActivity extends AppCompatActivity {
         MenuItem connectbtn,settings;
         connectbtn = menu.findItem(R.id.connect_btn);
         settings = menu.findItem(R.id.settings_btn);
+        connectBtn = connectbtn;
         connectbtn.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 if (!isConnected) {
                     isConnected=true;
-                    //create_connection();
+                    create_connection();
                     menuItem.setIcon(R.drawable.connected_icon);
-//                    Tloading = new Timer();
-//
-//                    loadtask = new TimerTask() {
-//                        @Override
-//                        public void run() {
-//                            request_packet();
-//                            recieve_packet();
-//                        }
-//
-//                    };
-//                    Tloading.schedule(loadtask,500,500);
+                    Tloading = new Timer();
+
+                    loadtask = new TimerTask() {
+                        @Override
+                        public void run() {
+                            request_packet();
+                            recieve_packet();
+                        }
+
+                    };
+                    Tloading.schedule(loadtask,500,500);
                 }
 
                 else{
                     try {
 
-//                        Tloading.cancel();
-//                        Tloading.purge();
-//                        Tloading = null;
-//                        client.close();
+                        Tloading.cancel();
+                        Tloading.purge();
+                        Tloading = null;
+                        client.close();
                         menuItem.setIcon(R.drawable.disconnected_icon);
                         isConnected=false;
-                    } catch (Exception e){//catch (IOException e) {
+                    }catch (IOException e) {
                         e.printStackTrace();
                     }
 
@@ -233,9 +273,7 @@ public class MainActivity extends AppCompatActivity {
     private void create_connection() {
         final String text = ipaddress;
         final int port;
-        final int port1;
         final String ipaddress;
-        //final String ipaddress1;
         if (text != null) {
             String[] splitted = text.split(":");
             ipaddress = splitted[0];
@@ -245,7 +283,6 @@ public class MainActivity extends AppCompatActivity {
                 public void run() {
                     try {
                         client = new Socket(ipaddress, port);
-                        //client1 = new Socket(ipaddress1, port1);
                         isConnected = true;
 
                     } catch (IOException e) {
@@ -254,7 +291,8 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 Toast.makeText(getApplicationContext(), "Could not connect!", Toast.LENGTH_SHORT).show();
-                                finish();
+                                connectBtn.setIcon(R.drawable.disconnected_icon);
+                                isConnected=false;
                             }
                         });
                     }
@@ -266,20 +304,33 @@ public class MainActivity extends AppCompatActivity {
     }
     private void request_packet() {
         OutputStream outstream;
-        OutputStream outstream1;
 
         try {
             outstream = client.getOutputStream();
-            //outstream1 = client1.getOutputStream();
             PrintWriter out = new PrintWriter(outstream);
-            //PrintWriter out1 = new PrintWriter(outstream1);
             String outputPacket=toSend_packet;
             out.print(outputPacket);
-            //out1.print(outputPacket);
             out.flush();
-            //out1.flush();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+
+                        Tloading.cancel();
+                        Tloading.purge();
+                        Tloading = null;
+                        client.close();
+                        connectBtn.setIcon(R.drawable.disconnected_icon);
+                        isConnected=false;
+                        Toast.makeText(getApplicationContext(), "Could not connect!", Toast.LENGTH_SHORT).show();
+                    }catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
         }
     }
     private void recieve_packet() {
@@ -321,4 +372,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences pref = getSharedPreferences(PREF_NAME,MODE_PRIVATE);
+        if(pref.contains(IP_KEY)){
+            ipaddress = pref.getString(IP_KEY,IP_DEFLT);
+        }
+        else{
+            pref.edit().putString(IP_KEY,IP_DEFLT).commit();
+        }
+    }
 }

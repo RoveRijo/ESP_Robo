@@ -38,10 +38,10 @@ public class Settings extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              if(ip.getText().toString()==""){
+              if(ip.getText().toString().equals("")){
                   iplayout.setError("Enter valid IP");
               }
-              else if (port.getText().toString()==""){
+              else if (port.getText().toString().equals("")){
                   portlayout.setError("Enter valid PortNo");
               }
               else {
